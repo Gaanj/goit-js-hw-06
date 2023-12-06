@@ -1,33 +1,26 @@
-function calcAverageCalories(days) {
-    if (days.length === 0) {
-        return 0;
+class Storage {
+    constructor(items) {
+        this._items = items;
     }
-    let sum = 0;
-    for (let i = 0; i < days.length; i++) {
-        sum += days[i].calories;
+
+    getItems() {
+        return this._items;
     }
-    return sum / days.length;
+
+    addItem(newItem) {
+        this._items.push(newItem);
+    }
+
+    removeItem(itemToRemove) {
+        const indexToRemove = this._items.indexOf(itemToRemove);
+        if (indexToRemove !== -1) {
+            this._items.splice(indexToRemove, 1);
+        }
+    }
 }
-console.log(
-    calcAverageCalories([
-        { day: "monday", calories: 3010 },
-        { day: "tuesday", calories: 3200 },
-        { day: "wednesday", calories: 3120 },
-        { day: "thursday", calories: 2900 },
-        { day: "friday", calories: 3450 },
-        { day: "saturday", calories: 3280 },
-        { day: "sunday", calories: 3300 }])
-); 
-console.log(
-    calcAverageCalories([
-        { day: "monday", calories: 2040 },
-        { day: "tuesday", calories: 2270 },
-        { day: "wednesday", calories: 2420 },
-        { day: "thursday", calories: 1900 },
-        { day: "friday", calories: 2370 },
-        { day: "saturday", calories: 2280 },
-        { day: "sunday", calories: 2610 }])
-);
-console.log(
-    calcAverageCalories([])
-);
+const storage = new Storage(["Nanitoids", "Prolonger", "Antigravitator"]);
+console.log(storage.getItems()); // ["Nanitoids", "Prolonger", "Antigravitator"]
+storage.addItem("Droid");
+console.log(storage.getItems()); // ["Nanitoids", "Prolonger", "Antigravitator", "Droid"]
+storage.removeItem("Prolonger");
+console.log(storage.getItems()); // ["Nanitoids", "Antigravitator", "Droid"]
