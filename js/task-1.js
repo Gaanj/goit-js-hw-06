@@ -3,7 +3,6 @@ const customer = {
     balance: 24000,
     discount: 0.1,
     orders: ["Burger", "Pizza", "Salad"],
-    
     getBalance() {
         return this.balance;
     },
